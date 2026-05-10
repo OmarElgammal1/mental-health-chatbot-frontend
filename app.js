@@ -123,7 +123,7 @@ function addBotMessage(text) {
 
   div.innerHTML = `
     <div class="avatar">S</div>
-    <div class="bubble">${escapeHtml(text)}</div>`;
+    <div class="bubble markdown">${marked.parse(text)}</div>`;
 
   chatArea.appendChild(div);
   chatArea.scrollTop = chatArea.scrollHeight;

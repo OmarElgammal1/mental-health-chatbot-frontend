@@ -332,31 +332,16 @@ html, body {
   border: 1px solid var(--border);
 }
 
-/* ── Metadata badges ── */
-.meta-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 8px;
-}
-
-.meta-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 2px 8px;
-  border-radius: 6px;
-  font-size: 0.7rem;
-  font-weight: 500;
-  background: var(--primary-light);
-  color: var(--primary-dark);
-}
-
-.meta-tag .label {
-  opacity: 0.7;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-}
+/* ── Markdown inside bot bubbles ── */
+.bubble.markdown p { margin: 0.4em 0; }
+.bubble.markdown p:first-child { margin-top: 0; }
+.bubble.markdown p:last-child { margin-bottom: 0; }
+.bubble.markdown ol,
+.bubble.markdown ul { margin: 0.4em 0; padding-left: 1.4em; }
+.bubble.markdown li { margin: 0.25em 0; }
+.bubble.markdown strong { font-weight: 600; }
+.bubble.markdown em { font-style: italic; }
+.bubble.markdown hr { border: none; border-top: 1px solid var(--border); margin: 0.6em 0; }
 
 /* ── Typing Indicator ── */
 .typing-indicator {
