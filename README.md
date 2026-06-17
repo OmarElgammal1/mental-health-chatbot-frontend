@@ -1,8 +1,16 @@
+<<<<<<< HEAD
+# Willow - Mental Health Support Chatbot
+
+A simple chat interface for the Willow mental health support chatbot.
+
+**Live:** https://omarelgammal1.github.io/mental-health-chatbot-frontend/
+=======
 # Serenity - Mental Health Support Chatbot
 
 A simple chat interface for the Serenity mental health support chatbot.
 
-**Live:** [https://omarelgammal1.github.io/mental-health-chatbot-frontend/](https://omarelgammal1.github.io/mental-health-chatbot-frontend/)
+**Live:** https://ishraq-hassan.github.io/chatbot-frontend/
+>>>>>>> 3691790 (docs: add README with project overview and student instructions)
 
 ## How it works
 

@@ -7,23 +7,57 @@
 }
 
 :root {
-  --bg: #f0f4f3;
-  --surface: #ffffff;
-  --primary: #4a9e8e;
-  --primary-light: #e8f5f1;
-  --primary-dark: #3a7e72;
-  --text: #2c3e3a;
-  --text-secondary: #6b8a83;
-  --border: #dce8e4;
-  --user-bubble: #4a9e8e;
+  /* Willow — soft willow-green primary with a warm apricot accent */
+  --bg: #f4f5f0;
+  --surface: #fffdf9;
+  --primary: #5d9b76;
+  --primary-light: #e6f1ea;
+  --primary-dark: #4a7d5f;
+  --accent: #e8a87c;
+  --accent-soft: #f7e3d6;
+  --text: #2c3a31;
+  --text-secondary: #6f8a7b;
+  --border: #dde8e0;
+  --user-bubble: #5d9b76;
   --user-text: #ffffff;
-  --bot-bubble: #ffffff;
-  --bot-text: #2c3e3a;
+  --bot-bubble: #fffdf9;
+  --bot-text: #2c3a31;
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
   --radius: 12px;
   --radius-lg: 18px;
   --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+[data-theme="dark"] {
+  --bg: #141a16;
+  --surface: #1c241e;
+  --primary: #74b78f;
+  --primary-light: #233029;
+  --primary-dark: #5d9b76;
+  --accent: #e8a87c;
+  --accent-soft: #3a2e26;
+  --text: #e7efe9;
+  --text-secondary: #93a89a;
+  --border: #2d3a31;
+  --user-bubble: #4a7d5f;
+  --user-text: #ffffff;
+  --bot-bubble: #1c241e;
+  --bot-text: #e7efe9;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Theme toggle icon: show moon in light mode, sun in dark mode */
+.icon-moon { display: block; }
+.icon-sun { display: none; }
+[data-theme="dark"] .icon-moon { display: none; }
+[data-theme="dark"] .icon-sun { display: block; }
+
+/* Keyboard focus visibility */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
 
 html, body {
@@ -259,9 +293,17 @@ html, body {
 }
 
 .prompt-chip:hover {
-  border-color: var(--primary);
-  color: var(--primary);
-  background: var(--primary-light);
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* Markdown links pick up the warm accent so they stand out from green UI */
+.bubble.markdown a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 /* ── Messages ── */
@@ -293,10 +335,13 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.8rem;
-  font-weight: 600;
   flex-shrink: 0;
   margin-top: 2px;
+}
+
+.avatar svg {
+  width: 18px;
+  height: 18px;
 }
 
 .message.user .avatar {
@@ -333,18 +378,62 @@ html, body {
 }
 
 /* ── Feedback buttons ── */
-.bubble-wrap { display: flex; flex-direction: column; }
+.bubble-wrap { display: flex; flex-direction: column; min-width: 0; }
+.message.user .bubble-wrap { align-items: flex-end; }
+.message.bot .bubble-wrap { align-items: flex-start; }
 
-.feedback-btns {
+/* ── Message meta (timestamp + actions) ── */
+.msg-time {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  margin-top: 3px;
+  padding: 0 4px;
+}
+
+.msg-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.msg-meta .msg-time { margin-top: 0; }
+
+.msg-actions {
   display: flex;
   gap: 4px;
-  margin-top: 4px;
+  align-items: center;
   opacity: 0;
   transition: opacity 0.15s;
 }
 
-.message.bot:hover .feedback-btns { opacity: 1; }
-.feedback-btns.voted { opacity: 1; }
+.message.bot:hover .msg-actions,
+.msg-actions:focus-within { opacity: 1; }
+.msg-actions:has(.feedback-btns.voted) { opacity: 1; }
+
+.copy-btn.copied {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.fb-hint {
+  font-size: 0.72rem;
+  color: #c0392b;
+  margin-top: 2px;
+  padding: 0 4px;
+}
+
+.still-thinking {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.feedback-btns {
+  display: flex;
+  gap: 4px;
+}
 
 .fb-btn {
   width: 28px;
